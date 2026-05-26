@@ -6,19 +6,24 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        RootViewControllerRepresentable()
+            .ignoresSafeArea()
     }
 }
 
-#Preview {
-    ContentView()
+struct RootViewControllerRepresentable: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let splashVC = SplashViewController()
+        let navController = UINavigationController(rootViewController: splashVC)
+        navController.isNavigationBarHidden = true
+        return navController
+    }
+    
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
+        // No update needed
+    }
 }
